@@ -10,10 +10,16 @@
     "package": "plasmo package"
   },
   "dependencies": {
+    "@radix-ui/react-icons": "^1.3.0",
+    "class-variance-authority": "^0.7.0",
+    "clsx": "^2.1.0",
+    "lucide-react": "^0.365.0",
     "plasmo": "0.85.2",
     "react": "18.2.0",
     "react-dom": "18.2.0",
-    "react-icons": "^5.0.1"
+    "react-icons": "^5.0.1",
+    "tailwind-merge": "^2.2.2",
+    "tailwindcss-animate": "^1.0.7"
   },
   "devDependencies": {
     "@ianvs/prettier-plugin-sort-imports": "4.1.1",
