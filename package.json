@@ -2,7 +2,7 @@
   "name": "moquote",
   "displayName": "Moquote",
   "version": "0.0.1",
-  "description": "Help you find the right vehicle",
+  "description": "Helps you find the right vehicle",
   "author": "emblj",
   "scripts": {
     "dev": "plasmo dev",
