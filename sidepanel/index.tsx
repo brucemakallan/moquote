@@ -1,5 +1,8 @@
 import logo from "data-base64:~assets/logo.svg"
 import { useState } from "react"
+import { FaBeer } from "react-icons/fa"
+
+import "../style.css"
 
 function IndexSidePanel() {
   const [data, setData] = useState("")
@@ -13,6 +16,8 @@ function IndexSidePanel() {
       }}
     >
       <img src={logo} alt="Some pretty cool image" />
+
+      <FaBeer className="text-6xl text-red-300" />
       <h2>
         Welcome to your
         <a href="https://www.plasmo.com" target="_blank">
