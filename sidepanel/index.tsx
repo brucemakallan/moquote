@@ -1,4 +1,5 @@
 import { useState } from "react"
+import logo from "data-base64:~assets/logo.svg"
 
 function IndexSidePanel() {
   const [data, setData] = useState("")
@@ -10,6 +11,7 @@ function IndexSidePanel() {
         flexDirection: "column",
         padding: 16
       }}>
+      <img src={logo} alt="Some pretty cool image" />
       <h2>
         Welcome to your
         <a href="https://www.plasmo.com" target="_blank">
