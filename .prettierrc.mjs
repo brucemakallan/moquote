@@ -4,12 +4,9 @@
 export default {
   printWidth: 80,
   tabWidth: 2,
-  useTabs: false,
   semi: false,
   singleQuote: false,
-  trailingComma: "none",
-  bracketSpacing: true,
-  bracketSameLine: true,
+  trailingComma: "all",
   plugins: ["@ianvs/prettier-plugin-sort-imports"],
   importOrder: [
     "<BUILTIN_MODULES>", // Node.js built-in modules
@@ -21,6 +18,6 @@ export default {
     "",
     "^~(.*)$",
     "",
-    "^[./]"
-  ]
+    "^[./]",
+  ],
 }

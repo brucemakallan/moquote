@@ -1,5 +1,5 @@
-import { useState } from "react"
 import logo from "data-base64:~assets/logo.svg"
+import { useState } from "react"
 
 function IndexSidePanel() {
   const [data, setData] = useState("")
@@ -9,8 +9,9 @@ function IndexSidePanel() {
       style={{
         display: "flex",
         flexDirection: "column",
-        padding: 16
-      }}>
+        padding: 16,
+      }}
+    >
       <img src={logo} alt="Some pretty cool image" />
       <h2>
         Welcome to your
