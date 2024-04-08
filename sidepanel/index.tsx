@@ -4,12 +4,25 @@ import { FaBeer } from "react-icons/fa"
 
 import "../style.css"
 
+import { Button } from "~components/ui/button"
+
 function IndexSidePanel() {
   const [data, setData] = useState("")
 
   return (
     <div className="flex flex-col gap-5 p-5">
       <img src={logo} alt="Some pretty cool image" className="w-24" />
+
+      <Button size="sm" variant="default">
+        Hello
+      </Button>
+      <Button size="lg" variant="secondary">
+        Hello
+      </Button>
+      <Button variant="outline">Hello</Button>
+      <Button variant="destructive">Hello</Button>
+      <Button variant="ghost">Hello</Button>
+      <Button variant="link">Hello</Button>
 
       <FaBeer className="text-2xl text-red-300" />
       <h1>Welcome to your extension</h1>
