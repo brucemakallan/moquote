@@ -117,5 +117,5 @@ p {
 }
 
 a {
-  @apply text-primary-dark-3 font-semibold underline;
+  @apply text-secondary-dark-4 font-semibold no-underline hover:underline;
 }
