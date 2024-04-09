@@ -1,62 +1,55 @@
 import logo from "data-base64:~assets/logo.svg"
 import { useEffect, useState } from "react"
-import { FaBeer } from "react-icons/fa"
 
 import "../style.css"
 
+import { BsCoin } from "react-icons/bs"
+import { GiMoneyStack } from "react-icons/gi"
+import { MdOutlineNumbers } from "react-icons/md"
+import { PiEngine } from "react-icons/pi"
+import { RxCalendar } from "react-icons/rx"
+
 import { Button } from "~components/ui/button"
+import { InfoCard } from "~components/ui/InfoCard"
 import { supabase } from "~core/supabase"
 
-function IndexSidePanel() {
-  const [data, setData] = useState([])
+function SidePanel() {
+  // useEffect(() => {
+  //   const getURATaxes = async () => {
+  //     const res = await supabase.from("ura_taxes").select("*")
+  //     if (res.error) {
+  //       console.error(res.error)
+  //     } else {
+  //       setData(res.data)
+  //     }
+  //   }
 
-  useEffect(() => {
-    const getURATaxes = async () => {
-      const res = await supabase.from("ura_taxes").select("*")
-      if (res.error) {
-        console.error(res.error)
-      } else {
-        setData(res.data)
-      }
-    }
-
-    getURATaxes()
-  }, [])
+  //   getURATaxes()
+  // }, [])
 
   return (
-    <div className="flex flex-col gap-4 p-5">
-      <Button variant="default">Click me</Button>
-      <Button variant="destructive" isLoading>
-        Click me
-      </Button>
-      <Button variant="outline" isLoading>
-        Click me
-      </Button>
-      <Button variant="ghost" isLoading>
-        Click me
-      </Button>
-      <Button variant="link" isLoading>
-        Click me
-      </Button>
-
-      <p>
-        Lorem ipsum dolor sit amet, consectetur adipiscing elit, sed do eiusmod tempor incididunt ut labore et dolore
-        magna aliqua. Ut enim ad minim veniam, quis nostrud exercitation ullamco laboris nisi ut aliquip ex ea commodo
-        consequat. Duis aute irure dolor in reprehenderit in voluptate velit esse cillum dolore eu fugiat nulla
-        pariatur. Excepteur sint occaecat cupidatat non proident, sunt in culpa qui officia deserunt mollit anim id est
-        laborum. <a href="#">More details</a>
-      </p>
-
-      {data?.map((row) => (
-        <div key={row.id} className="flex flex-col gap-5">
-          <p>{row.modal_code}</p>
-          <p>{row.registration_year}</p>
-          <p>{row.engine_size}</p>
-          <p>{row.usd}</p>
-        </div>
-      ))}
+    <div className="max-w-[600px] mx-auto flex flex-col gap-4">
+      <img
+        src="https://picsum.photos/id/237/600/600"
+        alt="Vehicle"
+        className="w-full h-[300px] object-cover rounded-b-3xl"
+      />
+      <div className="flex gap-4 flex-wrap px-4">
+        <InfoCard Icon={RxCalendar} heading="Year" value="2024" className="grow" />
+        <InfoCard Icon={PiEngine} heading="Capacity" value="2000 cc" className="grow" />
+        <InfoCard Icon={MdOutlineNumbers} heading="Modal" value="ABA-5NCCZ" className="grow" />
+        <InfoCard Icon={GiMoneyStack} heading="Price" value="USD 6,000" hint="(UGX 23,800,000)" className="w-full" />
+        <InfoCard
+          Icon={BsCoin}
+          variant="accent"
+          heading="URA TAXES"
+          value="USD 7,000"
+          hint="(UGX 27,900,000)"
+          className="w-full"
+        />
+      </div>
     </div>
   )
 }
 
-export default IndexSidePanel
+export default SidePanel
