@@ -2,9 +2,7 @@ import { IoShareSocialSharp } from "react-icons/io5"
 
 import { Button } from "~components/ui/button"
 
-interface Props {}
-
-export function ImageSection(props: Props) {
+export function ImageSection() {
   return (
     <div className="grid w-full h-[300px]">
       <div className="row-start-1 col-start-1 w-full">

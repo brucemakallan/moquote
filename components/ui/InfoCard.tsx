@@ -2,6 +2,8 @@ import { RxCalendar } from "react-icons/rx"
 
 import { cn } from "~lib/utils"
 
+import { Skeleton } from "./skeleton"
+
 interface Props {
   Icon: typeof RxCalendar
   heading: string
@@ -9,12 +11,15 @@ interface Props {
   hint?: string
   className?: string
   variant?: "primary" | "accent"
+  isLoading?: boolean
 }
 
 export function InfoCard(props: Props) {
-  const { Icon, heading, value, hint, className, variant = "primary" } = props
+  const { Icon, heading, value, hint, className, isLoading, variant = "primary" } = props
 
   const isPrimary = variant === "primary"
+
+  if (isLoading) return <InfoCardSkeleton />
 
   return (
     <div
@@ -29,6 +34,18 @@ export function InfoCard(props: Props) {
         <span className={cn("uppercase text-xs", isPrimary ? "text-gray-500" : "text-gray-700")}>{heading}</span>
         <span className={cn("text-lg", isPrimary ? "text-gray-600" : "text-primary-dark-5")}>{value}</span>
         <span className={cn("text-sm", isPrimary ? "text-gray-600" : "text-primary-dark-5")}>{hint}</span>
+      </div>
+    </div>
+  )
+}
+
+function InfoCardSkeleton() {
+  return (
+    <div className="flex items-center space-x-4">
+      <Skeleton className="h-7 w-7" />
+      <div className="space-y-2">
+        <Skeleton className="h-4 w-[50px]" />
+        <Skeleton className="h-4 w-[200px]" />
       </div>
     </div>
   )
