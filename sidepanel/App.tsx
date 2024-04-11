@@ -46,7 +46,7 @@ export function App() {
         />
       </div>
       <div className="p-4">
-        <GetQuoteButton />
+        <GetQuoteButton isLoading={isLoading} />
       </div>
     </div>
   )
