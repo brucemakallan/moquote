@@ -8,7 +8,9 @@ export function ImageSection({ src }: { src: string }) {
   return (
     <div className="grid w-full h-[300px]">
       <div className="row-start-1 col-start-1 w-full h-[300px] flex items-center justify-center z-0">
-        <LoadingLottie />
+        <div className="w-40 h-40">
+          <LoadingLottie />
+        </div>
       </div>
       <div className="row-start-1 col-start-1 w-full z-10">
         {!!src && (

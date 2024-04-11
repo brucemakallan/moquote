@@ -1,20 +1,19 @@
-import Lottie from "react-lottie"
+import Lottie from "lottie-react"
 
 import animationData from "../assets/lotties/loading-car.json"
 
 export function LoadingLottie() {
-  const defaultOptions = {
-    loop: true,
-    autoplay: true,
-    animationData: animationData,
-    rendererSettings: {
-      preserveAspectRatio: "xMidYMid slice",
-    },
-  }
-
   return (
     <div>
-      <Lottie options={defaultOptions} height={200} width={200} />
+      <Lottie
+        animationData={animationData}
+        loop
+        autoplay
+        style={{
+          width: "100%",
+          height: "100%",
+        }}
+      />
     </div>
   )
 }
