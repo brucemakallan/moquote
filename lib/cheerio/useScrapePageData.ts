@@ -2,7 +2,7 @@ import { useQuery } from "@tanstack/react-query"
 import * as cheerio from "cheerio"
 import { camelCase, get } from "lodash"
 
-type ScrapePageData = {
+export type ScrapePageData = {
   totalPrice: string
   year: string
   capacity: string

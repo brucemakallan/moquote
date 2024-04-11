@@ -1,3 +1,4 @@
+import { useMemo } from "react"
 import { BsCoin } from "react-icons/bs"
 import { GiMoneyStack } from "react-icons/gi"
 import { MdOutlineNumbers } from "react-icons/md"
@@ -6,27 +7,19 @@ import { RxCalendar } from "react-icons/rx"
 
 import { InfoCard } from "~components/ui/InfoCard"
 import { convertToFloat } from "~helpers/numbers"
-import { usePageData } from "~lib/cheerio/usePageData"
-import { useScrapePage } from "~lib/cheerio/useScrapePageData"
+import type { ScrapePageData } from "~lib/cheerio/useScrapePageData"
 
-import { Error } from "./Error"
+type Props = {
+  pageData: ScrapePageData
+  ugxRate: number
+  isLoading?: boolean
+}
 
-export function VehicleInformation() {
-  // TODO: get url dynamically
-  const url = "https://www.beforward.jp/volkswagen/tiguan/br818823/id/7229101/"
+export function VehicleInformation(props: Props) {
+  const { ugxRate, isLoading, pageData } = props
+  const { year, capacity, modal, totalPrice } = pageData ?? {}
 
-  const pageDataQuery = usePageData(url)
-  const scrapedDataQuery = useScrapePage(pageDataQuery.data)
-
-  const { totalPrice, year, capacity, modal } = scrapedDataQuery.data || {}
-  const totalPriceFloat = convertToFloat(totalPrice)
-
-  const ugxRate = 3800 // TODO: Get UGX rate
-
-  const isLoading = pageDataQuery.isLoading || scrapedDataQuery.isLoading
-  const error = pageDataQuery.error || scrapedDataQuery.error
-
-  if (error) return <Error error={error} className="p-4" />
+  const totalPriceFloat = useMemo(() => convertToFloat(totalPrice), [totalPrice])
 
   return (
     <div className="flex gap-4 flex-wrap p-4">
@@ -39,7 +32,7 @@ export function VehicleInformation() {
       {!!modal && (
         <InfoCard Icon={MdOutlineNumbers} heading="Modal code" value={modal} className="grow" isLoading={isLoading} />
       )}
-      {!!totalPrice && (
+      {!!totalPriceFloat && !!ugxRate && (
         <InfoCard
           Icon={GiMoneyStack}
           heading="Price"
