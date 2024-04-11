@@ -15,7 +15,7 @@ export function useScrapePage(pageData?: any) {
     const $ = cheerio.load(pageData)
 
     const image = $("#fn-imgMain-a").attr("href")
-    const imageUrl = `https:${image}`
+    const imageUrl = image ? `https:${image}` : ""
     const totalPrice = $("#fn-vehicle-price-total-price").text()
 
     const specsTable = $("table.specification")
