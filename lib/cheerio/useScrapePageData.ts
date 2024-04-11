@@ -7,12 +7,15 @@ export type ScrapePageData = {
   year: string
   capacity: string
   modal: string
+  imageUrl: string
 }
 
 export function useScrapePage(pageData?: any) {
   const scrapePage = async (): Promise<ScrapePageData> => {
     const $ = cheerio.load(pageData)
 
+    const image = $("#fn-imgMain-a").attr("href")
+    const imageUrl = `https:${image}`
     const totalPrice = $("#fn-vehicle-price-total-price").text()
 
     const specsTable = $("table.specification")
@@ -46,6 +49,7 @@ export function useScrapePage(pageData?: any) {
       year,
       capacity,
       modal,
+      imageUrl,
     }
   }
 

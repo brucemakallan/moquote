@@ -8,7 +8,7 @@ interface Props {
   className?: string
 }
 
-export function Error(props: Props) {
+export function ErrorAlert(props: Props) {
   const { error, className } = props
 
   return (
@@ -16,7 +16,9 @@ export function Error(props: Props) {
       <Alert variant="destructive">
         <AlertCircle className="h-4 w-4" />
         <AlertTitle>Error</AlertTitle>
-        <AlertDescription>{get(error, "message", "Something went wrong")}</AlertDescription>
+        <AlertDescription>
+          {get(error, "message", "Something went wrong")}
+        </AlertDescription>
       </Alert>
     </div>
   )
