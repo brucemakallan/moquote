@@ -6,7 +6,7 @@ export type ScrapePageData = {
   totalPrice: string
   year: string
   capacity: string
-  modal: string
+  model: string
   imageUrl: string
 }
 
@@ -38,9 +38,9 @@ export function useScrapePage(pageData?: any) {
 
     const year = tableObject["registrationYearMonth"]
     const capacity = tableObject["engineSize"]
-    const modal = tableObject["modelCode"]
+    const model = tableObject["modelCode"]
 
-    if (!totalPrice || !year || !capacity || !modal) {
+    if (!totalPrice || !year || !capacity || !model) {
       throw new Error("Missing values")
     }
 
@@ -48,7 +48,7 @@ export function useScrapePage(pageData?: any) {
       totalPrice,
       year,
       capacity,
-      modal,
+      model,
       imageUrl,
     }
   }

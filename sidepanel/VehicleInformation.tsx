@@ -20,7 +20,7 @@ type Props = {
 
 export function VehicleInformation(props: Props) {
   const { ugxRate, isLoading, pageData, tax } = props
-  const { year, capacity, modal, totalPrice } = pageData ?? {}
+  const { year, capacity, model, totalPrice } = pageData ?? {}
 
   const totalPriceFloat = useMemo(
     () => convertToFloat(totalPrice),
@@ -47,11 +47,11 @@ export function VehicleInformation(props: Props) {
           isLoading={isLoading}
         />
       )}
-      {!!modal && (
+      {!!model && (
         <InfoCard
           Icon={MdOutlineNumbers}
-          heading="Modal code"
-          value={modal}
+          heading="Model code"
+          value={model}
           className="grow"
           isLoading={isLoading}
         />
@@ -81,7 +81,7 @@ export function VehicleInformation(props: Props) {
           <ErrorAlert
             error={
               new Error(
-                "Could not find tax information for this vehicle. It might be an old or unlisted modal",
+                "Could not find tax information for this vehicle. It might be an old or unlisted model",
               )
             }
           />

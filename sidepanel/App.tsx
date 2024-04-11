@@ -14,11 +14,11 @@ export function App() {
 
   const pageDataQuery = usePageData(url)
   const scrapedDataQuery = useScrapePage(pageDataQuery.data)
-  const { year, capacity, modal, imageUrl } = scrapedDataQuery.data ?? {}
+  const { year, capacity, model, imageUrl } = scrapedDataQuery.data ?? {}
   const taxesQuery = useURATaxes({
     year,
     capacity,
-    modal,
+    model,
   })
 
   const ugxRate = 3800 // TODO: Get UGX rate
@@ -37,7 +37,7 @@ export function App() {
   return (
     <div className="max-w-[600px] mx-auto flex flex-col gap-4 h-[100vh] justify-between">
       <div>
-        {!!imageUrl && <ImageSection src={imageUrl} />}
+        <ImageSection src={imageUrl} />
         <VehicleInformation
           ugxRate={ugxRate}
           pageData={scrapedDataQuery.data}

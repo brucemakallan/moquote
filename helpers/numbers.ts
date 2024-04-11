@@ -19,7 +19,7 @@ export const cleanCapacity = (value?: string) => {
   return convertToFloat(value)
 }
 
-export const cleanModal = (value?: string) => {
+export const cleanModel = (value?: string) => {
   if (!value) return null
 
   const [_code1, code2] = value.split("-")
