@@ -64,6 +64,7 @@ export function VehicleInformation(props: Props) {
           hint={`(UGX ${(totalPriceFloat * ugxRate).toLocaleString()})`}
           className="w-full"
           isLoading={isLoading}
+          tooltip={`USD 1 = UGX ${ugxRate.toLocaleString()}`}
         />
       )}
       {!!tax && !!ugxRate ? (
@@ -75,6 +76,7 @@ export function VehicleInformation(props: Props) {
           hint={`(UGX ${(tax * ugxRate).toLocaleString()})`}
           className="w-full"
           isLoading={isLoading}
+          tooltip={`USD 1 = UGX ${ugxRate.toLocaleString()}`}
         />
       ) : (
         !isLoading && (

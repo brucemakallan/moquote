@@ -46,7 +46,6 @@ export function App() {
           tax={tax}
           isLoading={isLoading}
         />
-        <div>{ugxRate}</div>
       </div>
       <div className="p-4">
         <GetQuoteButton isLoading={isLoading} />
