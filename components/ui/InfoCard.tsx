@@ -99,7 +99,7 @@ function InfoPopover({ text }: { text: string }) {
       <PopoverTrigger>
         <AiOutlineInfoCircle className="w-5 h-5 text-gray-500" />
       </PopoverTrigger>
-      <PopoverContent>{text}</PopoverContent>
+      <PopoverContent className="w-auto">{text}</PopoverContent>
     </Popover>
   )
 }
