@@ -1,3 +1,5 @@
+export type Currency = "UGX"
+
 export type tables = {
   ura_taxes: {
     id: number
@@ -8,5 +10,11 @@ export type tables = {
     description: string
     capacity?: string
     ura_tax: string
+  }
+  exchange_rates: {
+    id: Currency
+    created_at: string
+    value: number
+    updated_at: string
   }
 }

@@ -24,8 +24,6 @@ export function useURATaxes(args: Args) {
       .ilike("description", `%${cleanModel(model)}%`)
       .ilike("capacity", `%${capacityRounded}%`)
 
-    console.log({ data, error })
-
     if (error) throw error
 
     return (data?.[0] as tables["ura_taxes"]) ?? null

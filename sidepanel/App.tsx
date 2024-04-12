@@ -1,6 +1,7 @@
 import { convertToFloat } from "~helpers/numbers"
 import { usePageData } from "~lib/cheerio/usePageData"
 import { useScrapePage } from "~lib/cheerio/useScrapePageData"
+import { useAPIExchangeRates } from "~lib/open-exchange-rates/useAPIExchangeRates"
 import { useURATaxes } from "~lib/supabase/useURATaxes"
 
 import { ErrorAlert } from "./ErrorAlert"
@@ -12,6 +13,8 @@ export function App() {
   // TODO: get url dynamically
   const url = "https://www.beforward.jp/volkswagen/tiguan/br908510/id/7324016/"
 
+  const exchangeRatesQuery = useAPIExchangeRates()
+  const ugxRate = exchangeRatesQuery.data ?? 0
   const pageDataQuery = usePageData(url)
   const scrapedDataQuery = useScrapePage(pageDataQuery.data)
   const { year, capacity, model, imageUrl } = scrapedDataQuery.data ?? {}
@@ -21,7 +24,6 @@ export function App() {
     model,
   })
 
-  const ugxRate = 3800 // TODO: Get UGX rate
   const tax = convertToFloat(taxesQuery.data?.ura_tax)
 
   const isLoading =
@@ -44,6 +46,7 @@ export function App() {
           tax={tax}
           isLoading={isLoading}
         />
+        <div>{ugxRate}</div>
       </div>
       <div className="p-4">
         <GetQuoteButton isLoading={isLoading} />
