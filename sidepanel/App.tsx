@@ -56,6 +56,7 @@ export function App() {
       tax,
     }
 
+    // TODO: Save analytics
     setVehicleCache(data)
     return data
   }, [scrapedDataQuery.data, tax, ugxRate])
