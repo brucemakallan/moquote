@@ -11,13 +11,14 @@ import { VehicleInformation } from "./VehicleInformation"
 
 export function App() {
   // TODO: get url dynamically
-  const url = "https://www.beforward.jp/volkswagen/tiguan/br908510/id/7324016/"
+  const url = "https://www.beforward.jp/subaru/impreza/bt012222/id/7411702/"
 
   const exchangeRatesQuery = useAPIExchangeRates()
   const ugxRate = exchangeRatesQuery.data ?? 0
   const pageDataQuery = usePageData(url)
   const scrapedDataQuery = useScrapePage(pageDataQuery.data)
-  const { year, capacity, model, imageUrl } = scrapedDataQuery.data ?? {}
+  const { heading, year, capacity, model, imageUrl } =
+    scrapedDataQuery.data ?? {}
   const taxesQuery = useURATaxes({
     year,
     capacity,
@@ -37,9 +38,10 @@ export function App() {
   if (error) return <ErrorAlert error={error} className="p-4" />
 
   return (
-    <div className="max-w-[600px] mx-auto flex flex-col gap-4 h-[100vh] justify-between">
-      <div>
+    <div className="max-w-[600px] mx-auto flex flex-col gap-4 h-screen justify-between">
+      <div className="flex flex-col gap-4">
         <ImageSection src={imageUrl} />
+        {!!heading && <h4 className="px-4">{heading}</h4>}
         <VehicleInformation
           ugxRate={ugxRate}
           pageData={scrapedDataQuery.data}
@@ -47,7 +49,7 @@ export function App() {
           isLoading={isLoading}
         />
       </div>
-      <div className="p-4">
+      <div className="px-4 pb-4">
         <GetQuoteButton isLoading={isLoading} />
       </div>
     </div>

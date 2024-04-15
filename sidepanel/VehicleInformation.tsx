@@ -5,7 +5,7 @@ import { MdOutlineNumbers } from "react-icons/md"
 import { PiEngine } from "react-icons/pi"
 import { RxCalendar } from "react-icons/rx"
 
-import { InfoCard } from "~components/ui/InfoCard"
+import { VehicleInfoCard } from "~components/ui/VehicleInfoCard"
 import { convertToFloat } from "~helpers/numbers"
 import type { ScrapePageData } from "~lib/cheerio/useScrapePageData"
 
@@ -28,52 +28,55 @@ export function VehicleInformation(props: Props) {
   )
 
   return (
-    <div className="flex gap-4 flex-wrap p-4">
+    <div className="flex gap-4 flex-wrap px-4">
       {!!year && (
-        <InfoCard
+        <VehicleInfoCard
           Icon={RxCalendar}
-          heading="Year / Month"
-          value={year}
+          heading1="Year / Month"
+          value1={year}
           className="grow"
           isLoading={isLoading}
         />
       )}
       {!!capacity && (
-        <InfoCard
+        <VehicleInfoCard
           Icon={PiEngine}
-          heading="Size"
-          value={capacity}
+          heading1="Size"
+          value1={capacity}
           className="grow"
           isLoading={isLoading}
         />
       )}
       {!!model && (
-        <InfoCard
+        <VehicleInfoCard
           Icon={MdOutlineNumbers}
-          heading="Model code"
-          value={model}
+          heading1="Model code"
+          value1={model}
           className="grow"
           isLoading={isLoading}
         />
       )}
       {!!totalPriceFloat && !!ugxRate && (
-        <InfoCard
+        <VehicleInfoCard
           Icon={GiMoneyStack}
-          heading="Price"
-          value={`USD ${totalPriceFloat.toLocaleString()}`}
-          hint={`(UGX ${(totalPriceFloat * ugxRate).toLocaleString()})`}
+          heading1="Price"
+          value1={`UGX ${Math.round(totalPriceFloat * ugxRate).toLocaleString()}`}
+          hint1={`(USD ${totalPriceFloat.toLocaleString()})`}
           className="w-full"
           isLoading={isLoading}
           tooltip={`USD 1 = UGX ${ugxRate.toLocaleString()}`}
         />
       )}
       {!!tax && !!ugxRate ? (
-        <InfoCard
+        <VehicleInfoCard
           Icon={BsCoin}
           variant="accent"
-          heading="URA TAXES"
-          value={`USD ${tax.toLocaleString()}`}
-          hint={`(UGX ${(tax * ugxRate).toLocaleString()})`}
+          heading1="URA TAXES"
+          value1={`UGX ${Math.round(tax * ugxRate).toLocaleString()}`}
+          hint1={`(USD ${tax.toLocaleString()})`}
+          heading2="TOTAL"
+          value2={`UGX ${Math.round(tax * ugxRate + totalPriceFloat * ugxRate).toLocaleString()}`}
+          hint2={`(USD ${(totalPriceFloat + tax).toLocaleString()})`}
           className="w-full"
           isLoading={isLoading}
           tooltip={`USD 1 = UGX ${ugxRate.toLocaleString()}`}

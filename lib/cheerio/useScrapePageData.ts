@@ -3,6 +3,7 @@ import * as cheerio from "cheerio"
 import { camelCase, get } from "lodash"
 
 export type ScrapePageData = {
+  heading: string
   totalPrice: string
   year: string
   capacity: string
@@ -14,6 +15,7 @@ export function useScrapePage(pageData?: any) {
   const scrapePage = async (): Promise<ScrapePageData> => {
     const $ = cheerio.load(pageData)
 
+    const heading = $(".car-info-flex-box").find("h1").first().text()
     const image = $("#fn-imgMain-a").attr("href")
     const imageUrl = image ? `https:${image}` : ""
     const totalPrice = $("#fn-vehicle-price-total-price").text()
@@ -45,6 +47,7 @@ export function useScrapePage(pageData?: any) {
     }
 
     return {
+      heading,
       totalPrice,
       year,
       capacity,

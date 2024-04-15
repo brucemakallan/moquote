@@ -1,16 +1,16 @@
 import { IoShareSocialSharp } from "react-icons/io5"
 
 import { Button } from "~components/ui/button"
-import { Image } from "~components/ui/image"
+import { Image } from "~components/ui/Image"
 
 export function ImageSection({ src }: { src: string }) {
   return (
-    <div className="grid w-full h-[300px]">
-      <div className="row-start-1 col-start-1 w-full min-h-[300px] flex items-center justify-center">
+    <div className="grid w-full h-[220px]">
+      <div className="row-start-1 col-start-1 w-full min-h-[220px] flex items-center justify-center">
         <Image
           src={src}
           alt="Vehicle"
-          className="w-full h-[300px] object-cover rounded-b-3xl"
+          className="w-full h-[220px] object-cover rounded-b-3xl"
         />
       </div>
       <div className="row-start-1 col-start-1 flex justify-end w-full">

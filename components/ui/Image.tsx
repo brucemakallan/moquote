@@ -14,7 +14,7 @@ export function Image(props: Props) {
   const [loaded, setLoaded] = useState(false)
 
   return (
-    <div>
+    <div className="w-full flex justify-center ">
       {loaded ? null : (
         <div className="w-40 h-40">
           <LoadingLottie />
@@ -22,7 +22,7 @@ export function Image(props: Props) {
       )}
       {!!src && (
         <img
-          style={loaded ? {} : { display: "none" }}
+          style={loaded ? { width: "100%" } : { display: "none" }}
           src={src}
           alt={alt}
           className={className}
