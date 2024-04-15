@@ -67,7 +67,7 @@ export function VehicleInformation(props: Props) {
           tooltip={`USD 1 = UGX ${ugxRate.toLocaleString()}`}
         />
       )}
-      {!!tax && !!ugxRate ? (
+      {!!tax && !!ugxRate && (
         <VehicleInfoCard
           Icon={BsCoin}
           variant="accent"
@@ -81,16 +81,15 @@ export function VehicleInformation(props: Props) {
           isLoading={isLoading}
           tooltip={`USD 1 = UGX ${ugxRate.toLocaleString()}`}
         />
-      ) : (
-        !isLoading && (
-          <ErrorAlert
-            error={
-              new Error(
-                "Could not find tax information for this vehicle. It might be an old or unlisted model",
-              )
-            }
-          />
-        )
+      )}
+      {!!totalPriceFloat && !tax && (
+        <ErrorAlert
+          error={
+            new Error(
+              "Could not find tax information for this vehicle. It might be an old and/or unlisted model",
+            )
+          }
+        />
       )}
     </div>
   )

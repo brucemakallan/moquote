@@ -11,7 +11,7 @@ export type ScrapePageData = {
   imageUrl: string
 }
 
-export function useScrapePageData(pageData?: any) {
+export function useScrapePageData(enabled: boolean, pageData?: any) {
   const scrapePage = async (): Promise<ScrapePageData> => {
     const $ = cheerio.load(pageData)
 
@@ -61,7 +61,7 @@ export function useScrapePageData(pageData?: any) {
   const query = useQuery({
     queryKey: ["scrape-page", pageData],
     queryFn: scrapePage,
-    enabled: !!pageData,
+    enabled: enabled && !!pageData,
   })
 
   return query

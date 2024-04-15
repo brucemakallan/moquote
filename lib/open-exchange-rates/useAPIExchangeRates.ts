@@ -15,7 +15,7 @@ const shouldUpdate = (dateStr: string) => {
   return isStale
 }
 
-export function useAPIExchangeRates() {
+export function useAPIExchangeRates(enabled: boolean) {
   const APP_ID = process.env.PLASMO_PUBLIC_EXCHANGE_RATES_APP_ID
   const url = `https://openexchangerates.org/api/latest.json?app_id=${APP_ID}`
 
@@ -41,7 +41,7 @@ export function useAPIExchangeRates() {
   const query = useQuery({
     queryKey: ["exchange-rates", url],
     queryFn: getData,
-    enabled: !!APP_ID && !!dbExchangeRate,
+    enabled: enabled && !!APP_ID && !!dbExchangeRate,
   })
 
   return query

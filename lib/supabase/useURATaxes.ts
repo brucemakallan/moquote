@@ -10,7 +10,7 @@ type Args = {
   model?: string
 }
 
-export function useURATaxes(args: Args) {
+export function useURATaxes(enabled: boolean, args: Args) {
   const { year, capacity, model } = args
 
   const getData = async () => {
@@ -35,7 +35,7 @@ export function useURATaxes(args: Args) {
   const query = useQuery({
     queryKey: ["ura-taxes", year, capacity, model],
     queryFn: getData,
-    enabled: !!year && !!capacity && !!model,
+    enabled: enabled && !!year && !!capacity && !!model,
   })
 
   return query
