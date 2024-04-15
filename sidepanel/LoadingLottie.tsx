@@ -2,9 +2,9 @@ import Lottie from "lottie-react"
 
 import animationData from "../assets/lotties/loading-car.json"
 
-export function LoadingLottie() {
+export function LoadingLottie({ className }: { className?: string }) {
   return (
-    <div>
+    <div className={className}>
       <Lottie
         animationData={animationData}
         loop
