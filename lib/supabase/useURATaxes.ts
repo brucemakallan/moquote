@@ -15,16 +15,16 @@ export function useURATaxes(args: Args) {
 
   const getData = async () => {
     const capacityClean = cleanCapacity(capacity)
-    const capacityRounded = Math.ceil(capacityClean / 100) * 100
+    const capacityRounded10 = Math.ceil(capacityClean / 10) * 10
+    const capacityRounded100 = Math.ceil(capacityClean / 100) * 100
 
     const { data, error } = await supabase
       .from("ura_taxes")
       .select("*")
       .ilike("description", `%${cleanYear(year)}%`)
       .ilike("description", `%${cleanModel(model)}%`)
-      .ilike("capacity", `%${capacityRounded}%`)
       .or(
-        `capacity.ilike.%${capacityClean}%,capacity.ilike.%${capacityRounded}%`,
+        `capacity.ilike.%${capacityClean}%,capacity.ilike.%${capacityRounded10}%,capacity.ilike.%${capacityRounded100}%`,
       )
 
     if (error) throw error
