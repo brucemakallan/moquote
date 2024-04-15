@@ -18,7 +18,6 @@ interface Props {
 
   className?: string
   variant?: "primary" | "accent"
-  isLoading?: boolean
   tooltip?: string
 }
 
@@ -32,14 +31,11 @@ export function VehicleInfoCard(props: Props) {
     value2,
     hint2,
     className,
-    isLoading,
     tooltip,
     variant = "primary",
   } = props
 
   const isPrimary = variant === "primary"
-
-  if (isLoading) return <InfoCardSkeleton />
 
   return (
     <div
@@ -122,18 +118,6 @@ export function VehicleInfoCard(props: Props) {
       </div>
 
       {tooltip && <InfoPopover text={tooltip} />}
-    </div>
-  )
-}
-
-function InfoCardSkeleton() {
-  return (
-    <div className="flex items-center space-x-4">
-      <Skeleton className="h-7 w-7" />
-      <div className="space-y-2">
-        <Skeleton className="h-4 w-[50px]" />
-        <Skeleton className="h-4 w-[200px]" />
-      </div>
     </div>
   )
 }

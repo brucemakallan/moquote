@@ -6,6 +6,7 @@ import { PiEngine } from "react-icons/pi"
 import { RxCalendar } from "react-icons/rx"
 
 import { VehicleInfoCard } from "~components/ui/VehicleInfoCard"
+import { VehicleLoadingSkeleton } from "~components/ui/VehicleLoadingSkeleton"
 import { convertToFloat } from "~helpers/numbers"
 import type { ScrapePageData } from "~lib/cheerio/useScrapePageData"
 
@@ -27,6 +28,8 @@ export function VehicleInformation(props: Props) {
     [totalPrice],
   )
 
+  if (isLoading) return <VehicleLoadingSkeleton />
+
   return (
     <div className="flex gap-4 flex-wrap px-4">
       {!!year && (
@@ -35,7 +38,6 @@ export function VehicleInformation(props: Props) {
           heading1="Year / Month"
           value1={year}
           className="grow"
-          isLoading={isLoading}
         />
       )}
       {!!capacity && (
@@ -44,7 +46,6 @@ export function VehicleInformation(props: Props) {
           heading1="Size"
           value1={capacity}
           className="grow"
-          isLoading={isLoading}
         />
       )}
       {!!model && (
@@ -53,7 +54,6 @@ export function VehicleInformation(props: Props) {
           heading1="Model code"
           value1={model}
           className="grow"
-          isLoading={isLoading}
         />
       )}
       {!!totalPriceFloat && !!ugxRate && (
@@ -63,7 +63,6 @@ export function VehicleInformation(props: Props) {
           value1={`UGX ${Math.round(totalPriceFloat * ugxRate).toLocaleString()}`}
           hint1={`(USD ${totalPriceFloat.toLocaleString()})`}
           className="w-full"
-          isLoading={isLoading}
           tooltip={`USD 1 = UGX ${ugxRate.toLocaleString()}`}
         />
       )}
@@ -78,19 +77,16 @@ export function VehicleInformation(props: Props) {
           value2={`UGX ${Math.round(tax * ugxRate + totalPriceFloat * ugxRate).toLocaleString()}`}
           hint2={`(USD ${(totalPriceFloat + tax).toLocaleString()})`}
           className="w-full"
-          isLoading={isLoading}
           tooltip={`USD 1 = UGX ${ugxRate.toLocaleString()}`}
         />
       ) : (
-        !isLoading && (
-          <ErrorAlert
-            error={
-              new Error(
-                "Could not find tax information for this vehicle. It might be an old and/or unlisted model",
-              )
-            }
-          />
-        )
+        <ErrorAlert
+          error={
+            new Error(
+              "Could not find tax information for this vehicle. It might be an old and/or unlisted model",
+            )
+          }
+        />
       )}
     </div>
   )
