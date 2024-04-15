@@ -11,7 +11,7 @@ export type ScrapePageData = {
   imageUrl: string
 }
 
-export function useScrapePage(pageData?: any) {
+export function useScrapePageData(pageData?: any) {
   const scrapePage = async (): Promise<ScrapePageData> => {
     const $ = cheerio.load(pageData)
 

@@ -23,6 +23,9 @@ export function useURATaxes(args: Args) {
       .ilike("description", `%${cleanYear(year)}%`)
       .ilike("description", `%${cleanModel(model)}%`)
       .ilike("capacity", `%${capacityRounded}%`)
+      .or(
+        `capacity.ilike.%${capacityClean}%,capacity.ilike.%${capacityRounded}%`,
+      )
 
     if (error) throw error
 

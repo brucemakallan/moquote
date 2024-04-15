@@ -1,14 +1,14 @@
 import { Button } from "~components/ui/button"
 
 interface Props {
-  isLoading?: boolean
+  disabled?: boolean
 }
 
 export function GetQuoteButton(props: Props) {
-  const { isLoading } = props
+  const { disabled } = props
 
   return (
-    <Button disabled={isLoading} size="lg" className="w-full">
+    <Button disabled={disabled} size="lg" className="w-full">
       Get a quote from an agent
     </Button>
   )

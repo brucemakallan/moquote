@@ -3,7 +3,7 @@ import { useStorage } from "@plasmohq/storage/hook"
 import { CURRENT_URL_KEY } from "~helpers/constants"
 import { convertToFloat } from "~helpers/numbers"
 import { usePageData } from "~lib/cheerio/usePageData"
-import { useScrapePage } from "~lib/cheerio/useScrapePageData"
+import { useScrapePageData } from "~lib/cheerio/useScrapePageData"
 import { useAPIExchangeRates } from "~lib/open-exchange-rates/useAPIExchangeRates"
 import { useURATaxes } from "~lib/supabase/useURATaxes"
 
@@ -18,7 +18,7 @@ export function App() {
   const exchangeRatesQuery = useAPIExchangeRates()
   const ugxRate = exchangeRatesQuery.data ?? 0
   const pageDataQuery = usePageData(currentUrl)
-  const scrapedDataQuery = useScrapePage(pageDataQuery.data)
+  const scrapedDataQuery = useScrapePageData(pageDataQuery.data)
   const { heading, year, capacity, model, imageUrl } =
     scrapedDataQuery.data ?? {}
   const taxesQuery = useURATaxes({
@@ -52,7 +52,7 @@ export function App() {
         />
       </div>
       <div className="px-4 pb-4">
-        <GetQuoteButton isLoading={isLoading} />
+        <GetQuoteButton disabled={isLoading || !!error || !tax} />
       </div>
     </div>
   )
