@@ -1,7 +1,15 @@
 import { useQuery } from "@tanstack/react-query"
 import axios from "axios"
 
+const isValidVehicleUrl = (url: string) => {
+  return (
+    url.startsWith(process.env.PLASMO_PUBLIC_SITE_URL) && url.includes("/id/")
+  )
+}
+
 export function usePageData(url?: string) {
+  const enabled = !!url && isValidVehicleUrl(url)
+
   const getPageData = async () => {
     const pageResponse = await axios.get(url, {
       headers: {
@@ -18,7 +26,7 @@ export function usePageData(url?: string) {
   const query = useQuery({
     queryKey: ["page-data", url],
     queryFn: getPageData,
-    enabled: !!url,
+    enabled,
   })
 
   return query

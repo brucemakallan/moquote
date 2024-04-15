@@ -43,7 +43,9 @@ export function useScrapePage(pageData?: any) {
     const model = tableObject["modelCode"]
 
     if (!totalPrice || !year || !capacity || !model) {
-      throw new Error("Missing values")
+      throw new Error(
+        "Missing vehicle information. Please select a specific vehicle to proceed.",
+      )
     }
 
     return {
@@ -57,7 +59,7 @@ export function useScrapePage(pageData?: any) {
   }
 
   const query = useQuery({
-    queryKey: ["scrape-page"],
+    queryKey: ["scrape-page", pageData],
     queryFn: scrapePage,
     enabled: !!pageData,
   })

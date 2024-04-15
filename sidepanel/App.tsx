@@ -1,3 +1,6 @@
+import { useStorage } from "@plasmohq/storage/hook"
+
+import { CURRENT_URL_KEY } from "~helpers/constants"
 import { convertToFloat } from "~helpers/numbers"
 import { usePageData } from "~lib/cheerio/usePageData"
 import { useScrapePage } from "~lib/cheerio/useScrapePageData"
@@ -10,12 +13,11 @@ import { ImageSection } from "./ImageSection"
 import { VehicleInformation } from "./VehicleInformation"
 
 export function App() {
-  // TODO: get url dynamically
-  const url = "https://www.beforward.jp/subaru/impreza/bt012222/id/7411702/"
+  const [currentUrl] = useStorage(CURRENT_URL_KEY)
 
   const exchangeRatesQuery = useAPIExchangeRates()
   const ugxRate = exchangeRatesQuery.data ?? 0
-  const pageDataQuery = usePageData(url)
+  const pageDataQuery = usePageData(currentUrl)
   const scrapedDataQuery = useScrapePage(pageDataQuery.data)
   const { heading, year, capacity, model, imageUrl } =
     scrapedDataQuery.data ?? {}
