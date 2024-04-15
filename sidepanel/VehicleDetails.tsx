@@ -1,3 +1,4 @@
+import { Skeleton } from "~components/ui/skeleton"
 import type { ScrapePageData } from "~lib/cheerio/useScrapePageData"
 
 import { GetQuoteButton } from "./GetQuoteButton"
@@ -23,7 +24,13 @@ export function VehicleDetails(props: Props) {
       <div className="flex flex-col gap-4">
         <ImageSection src={imageUrl} isLoading={isLoading} />
 
-        {!!heading && <h4 className="px-4">{heading}</h4>}
+        {!!isLoading ? (
+          <div className="px-4">
+            <Skeleton className="h-4 w-[200px]" />
+          </div>
+        ) : (
+          !!heading && <h4 className="px-4">{heading}</h4>
+        )}
 
         <VehicleInformation
           ugxRate={ugxRate}
