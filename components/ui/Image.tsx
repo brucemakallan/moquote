@@ -1,6 +1,6 @@
 import { useEffect, useState } from "react"
 
-import { LoadingLottie } from "~sidepanel/LoadingLottie"
+import { LoadingLottie } from "~components/lotties/LoadingLottie"
 
 interface Props {
   src: string
