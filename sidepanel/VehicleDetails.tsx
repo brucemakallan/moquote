@@ -1,8 +1,8 @@
 import { Skeleton } from "~components/ui/skeleton"
 import type { ScrapePageData } from "~lib/cheerio/useScrapePageData"
 
-import { GetQuoteButton } from "./GetQuoteButton"
 import { ImageSection } from "./ImageSection"
+import { GetQuoteButton } from "./Quotation/GetQuoteButton"
 import { VehicleInformation } from "./VehicleInformation"
 
 export type VehicleData = ScrapePageData & {
