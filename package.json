@@ -7,7 +7,8 @@
   "scripts": {
     "dev": "plasmo dev",
     "build": "plasmo build",
-    "package": "plasmo package"
+    "package": "plasmo package",
+    "deploy-functions": "supabase functions deploy --no-verify-jwt"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
