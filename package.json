@@ -8,7 +8,7 @@
     "dev": "plasmo dev",
     "build": "plasmo build",
     "package": "plasmo package",
-    "deploy-functions": "supabase functions deploy --no-verify-jwt"
+    "deploy-functions": "supabase secrets set --env-file ./supabase/.env && supabase functions deploy --no-verify-jwt"
   },
   "dependencies": {
     "@hookform/resolvers": "^3.3.4",
