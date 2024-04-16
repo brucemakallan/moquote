@@ -1,4 +1,7 @@
+import { useMemo } from "react"
+
 import { Skeleton } from "~components/ui/skeleton"
+import { convertToFloat } from "~helpers/numbers"
 import type { ScrapePageData } from "~lib/cheerio/useScrapePageData"
 
 import { ImageSection } from "./ImageSection"
@@ -8,6 +11,7 @@ import { VehicleInformation } from "./VehicleInformation"
 export type VehicleData = ScrapePageData & {
   ugxRate: number
   tax: number
+  url: string
 }
 
 interface Props {
@@ -17,7 +21,33 @@ interface Props {
 
 export function VehicleDetails(props: Props) {
   const { vehicleData, isLoading } = props
-  const { heading, imageUrl, ugxRate, tax } = vehicleData ?? {}
+  const {
+    heading,
+    imageUrl,
+    ugxRate,
+    tax,
+    totalPrice,
+    capacity,
+    year,
+    model,
+    url,
+  } = vehicleData ?? {}
+
+  const quotationRequest = useMemo(
+    () => ({
+      url,
+      heading,
+      year,
+      capacity,
+      model,
+      imageUrl,
+      ugxRate,
+      tax,
+      email: "",
+      price: convertToFloat(totalPrice),
+    }),
+    [vehicleData, url],
+  )
 
   return (
     <div className="max-w-[600px] mx-auto flex flex-col gap-4 h-screen justify-between">
@@ -40,7 +70,10 @@ export function VehicleDetails(props: Props) {
         />
       </div>
       <div className="px-4 pb-4">
-        <GetQuoteButton disabled={isLoading || !tax} />
+        <GetQuoteButton
+          quotationRequest={quotationRequest}
+          disabled={isLoading || !tax}
+        />
       </div>
     </div>
   )

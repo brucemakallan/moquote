@@ -17,4 +17,17 @@ export type tables = {
     value: number
     updated_at: string
   }
+  quote_requests: {
+    id?: number
+    email: string
+    url: string
+    heading: string
+    price?: number
+    year?: string
+    capacity?: string
+    model?: string
+    image_url?: string
+    ugx_rate?: number
+    tax?: number
+  }
 }

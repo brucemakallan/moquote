@@ -54,6 +54,7 @@ export function App() {
       ...scrapedDataQuery.data,
       ugxRate,
       tax,
+      url: isValidUrl ? currentUrl : vehicleCache?.url,
     }
 
     // TODO: Save analytics

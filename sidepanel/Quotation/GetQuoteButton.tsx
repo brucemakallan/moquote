@@ -2,16 +2,20 @@ import { useState } from "react"
 
 import { Button } from "~components/ui/button"
 import { ResponsiveDrawer } from "~components/ui/ResponsiveDrawer"
+import type { QuotationRequest } from "~lib/supabase/useSetQuotationRequest"
 
 import { QuotationForm } from "./QuotationForm"
 
 interface Props {
   disabled?: boolean
+  quotationRequest: QuotationRequest
 }
 
 export function GetQuoteButton(props: Props) {
-  const { disabled } = props
+  const { disabled, quotationRequest } = props
   const [open, setOpen] = useState(false)
+
+  const close = () => setOpen(false)
 
   return (
     <ResponsiveDrawer
@@ -25,7 +29,7 @@ export function GetQuoteButton(props: Props) {
         </Button>
       }
     >
-      <QuotationForm />
+      <QuotationForm quotationRequest={quotationRequest} close={close} />
     </ResponsiveDrawer>
   )
 }

@@ -17,7 +17,7 @@ export function ErrorAlert(props: Props) {
         <AlertCircle className="h-4 w-4" />
         <AlertTitle>Error</AlertTitle>
         <AlertDescription>
-          {get(error, "message", "Something went wrong")}
+          {get(error, "message", "Something went wrong. Please try again.")}
         </AlertDescription>
       </Alert>
     </div>

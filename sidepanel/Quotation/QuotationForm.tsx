@@ -12,13 +12,37 @@ import {
 } from "~components/ui/form"
 import { Input } from "~components/ui/input"
 import { useToast } from "~components/ui/use-toast"
+import {
+  useSetQuotationRequest,
+  type QuotationRequest,
+} from "~lib/supabase/useSetQuotationRequest"
+import { ErrorAlert } from "~sidepanel/ErrorAlert"
+
+interface Props {
+  close: () => void
+  quotationRequest: QuotationRequest
+}
 
 const FormSchema = z.object({
   email: z.string().email(),
 })
 
-export function QuotationForm() {
+export function QuotationForm(props: Props) {
+  const { quotationRequest, close } = props
+
   const { toast } = useToast()
+
+  const onSuccess = () => {
+    close()
+
+    toast({
+      title: "Sent!",
+      description: "We'll get back to you shortly.",
+    })
+  }
+
+  const createQuotationRequest = useSetQuotationRequest(onSuccess)
+  const { mutate, isPending, isError, error } = createQuotationRequest
 
   const form = useForm<z.infer<typeof FormSchema>>({
     resolver: zodResolver(FormSchema),
@@ -28,11 +52,9 @@ export function QuotationForm() {
   })
 
   function onSubmit({ email }: z.infer<typeof FormSchema>) {
-    console.log({ email })
-    // TODO: Send email
-    toast({
-      title: "Sent!",
-      description: "We'll get back to you shortly.",
+    mutate({
+      ...quotationRequest,
+      email,
     })
   }
 
@@ -54,6 +76,7 @@ export function QuotationForm() {
                   type="email"
                   placeholder="Enter your email"
                   autoComplete="email"
+                  disabled={isPending}
                 />
               </FormControl>
               {/* <FormDescription>...</FormDescription> */}
@@ -61,7 +84,12 @@ export function QuotationForm() {
             </FormItem>
           )}
         />
-        <Button type="submit">Email me a quotation</Button>
+
+        {isError && <ErrorAlert error={error} />}
+
+        <Button type="submit" isLoading={isPending}>
+          Email me a quotation
+        </Button>
       </form>
     </Form>
   )
