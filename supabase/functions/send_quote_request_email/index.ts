@@ -54,13 +54,13 @@ const handler = async (request: Request): Promise<Response> => {
             <strong>Model</strong>: ${record.model}
           </div>
           <div style="margin-bottom: 10px">
-            <strong>Price</strong>: ${record.price}
+            <strong>Price</strong>: ${(record.price).toLocaleString()}
           </div>
           <div style="margin-bottom: 10px">
-            <strong>Tax</strong>: ${record.tax}
+            <strong>Tax</strong>: ${(record.tax).toLocaleString()}
           </div>
           <div style="margin-bottom: 10px">
-            <strong>UGX Rate</strong>: ${record.ugx_rate}
+            <strong>UGX Rate</strong>: ${(record.ugx_rate).toLocaleString()}
           </div>
           <div style="margin-bottom: 10px">
             <strong>Requested at</strong>: ${record.created_at}
