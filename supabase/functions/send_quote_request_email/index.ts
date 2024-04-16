@@ -54,16 +54,16 @@ const handler = async (request: Request): Promise<Response> => {
             <strong>Model</strong>: ${record.model}
           </div>
           <div style="margin-bottom: 10px">
-            <strong>Price</strong>: ${(record.price).toLocaleString()}
+            <strong>Price</strong>: USD ${(record.price).toLocaleString()}
           </div>
           <div style="margin-bottom: 10px">
-            <strong>Tax</strong>: ${(record.tax).toLocaleString()}
+            <strong>Tax</strong>: USD ${(record.tax).toLocaleString()}
           </div>
           <div style="margin-bottom: 10px">
-            <strong>UGX Rate</strong>: ${(record.ugx_rate).toLocaleString()}
+            <strong>USD - UGX</strong>: ${(record.ugx_rate).toLocaleString()}
           </div>
           <div style="margin-bottom: 10px">
-            <strong>Requested at</strong>: ${record.created_at}
+            <strong>Requested at</strong>: ${record.created_at} UTC
           </div>
           <div>${record.url}</div>
         </div>
