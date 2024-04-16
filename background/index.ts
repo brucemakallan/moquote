@@ -10,7 +10,7 @@ chrome.sidePanel
   .setPanelBehavior({ openPanelOnActionClick: true })
   .catch((error) => console.error(error))
 
-const getCurrentTab = async () => {
+export const getCurrentTab = async () => {
   const [tab] = await chrome.tabs.query({
     active: true,
     lastFocusedWindow: true,
