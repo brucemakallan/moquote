@@ -38,6 +38,7 @@ export function QuotationForm(props: Props) {
     toast({
       title: "Sent!",
       description: "We'll get back to you shortly.",
+      duration: 3000,
     })
   }
 
