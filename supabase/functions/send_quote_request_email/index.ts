@@ -1,4 +1,5 @@
 const RESEND_API_KEY = Deno.env.get('RESEND_API_KEY');
+const TO_EMAILS = Deno.env.get('TO_EMAILS');
 
 const handler = async (request: Request): Promise<Response> => {
   try {
@@ -6,9 +7,10 @@ const handler = async (request: Request): Promise<Response> => {
     console.log(`req, ${JSON.stringify(req)}`);
 
     if (!RESEND_API_KEY) throw new Error('RESEND_API_KEY not set');
-
+    if (!TO_EMAILS) throw new Error('TO_EMAILS not set');
     if (!req?.record?.id) throw new Error('Record not found');
 
+    const to = TO_EMAILS.split(',');
     const { record } = req;
     const html = `
     <div style="font-family: Arial, Helvetica, sans-serif; font-size: 14px">
@@ -90,7 +92,7 @@ const handler = async (request: Request): Promise<Response> => {
       },
       body: JSON.stringify({
         from: 'MoQuote <onboarding@resend.dev>',
-        to: 'brucemakallan@gmail.com',
+        to,
         subject: 'A MoQuote user has requested a quotation',
         html,
       }),
