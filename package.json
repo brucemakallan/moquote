@@ -1,7 +1,7 @@
 {
   "name": "moquote",
   "displayName": "MoQuote",
-  "version": "0.0.1",
+  "version": "0.0.2",
   "description": "Helps you find the right vehicle",
   "author": "emblj",
   "scripts": {
@@ -60,7 +60,8 @@
   },
   "manifest": {
     "host_permissions": [
-      "https://*/*"
+      "https://www.beforward.jp/*",
+      "https://image-cdn.beforward.jp/*"
     ],
     "key": "$CRX_KEY",
     "web_accessible_resources": [
@@ -69,7 +70,8 @@
           "sidepanel.html"
         ],
         "matches": [
-          "<all_urls>"
+          "https://www.beforward.jp/*",
+          "https://image-cdn.beforward.jp/*"
         ],
         "extension_ids": [
           "$CRX_ID"
