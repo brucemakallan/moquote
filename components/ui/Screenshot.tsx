@@ -1,15 +1,17 @@
 import domtoimage from "dom-to-image"
+import posthog from "posthog-js"
 
 import { useToast } from "./use-toast"
 
 interface Props {
   id: string
   filename: string
+  vehicleUrl: string
   children: React.ReactNode
 }
 
 export function Screenshot(props: Props) {
-  const { id, filename, children } = props
+  const { id, filename, vehicleUrl, children } = props
   const { toast } = useToast()
 
   const onClick = () => {
@@ -20,6 +22,8 @@ export function Screenshot(props: Props) {
         link.download = `${filename}.jpeg`
         link.href = dataUrl
         link.click()
+
+        posthog.capture("took a screenshot", { vehicleUrl })
 
         toast({
           title: "Saved!",

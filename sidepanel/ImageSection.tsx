@@ -7,10 +7,11 @@ import { Screenshot } from "~components/ui/Screenshot"
 interface Props {
   src: string
   isLoading?: boolean
+  vehicleUrl: string
 }
 
 export function ImageSection(props: Props) {
-  const { src, isLoading } = props
+  const { src, isLoading, vehicleUrl } = props
   const date = new Date().toISOString()
   const filename = `vehicle-screenshot-${date}`
 
@@ -25,7 +26,11 @@ export function ImageSection(props: Props) {
         />
       </div>
       <div className="row-start-1 col-start-1 flex justify-end w-full">
-        <Screenshot id="vehicle-section" filename={filename}>
+        <Screenshot
+          id="vehicle-section"
+          filename={filename}
+          vehicleUrl={vehicleUrl}
+        >
           <div className="w-10 h-10 bg-gray-800/85 rounded-bl-3xl p-2.5">
             <Button
               variant="ghost"

@@ -71,6 +71,9 @@ dependencies:
   plasmo:
     specifier: 0.85.2
     version: 0.85.2(lodash@4.17.21)(postcss@8.4.38)(react-dom@18.2.0)(react@18.2.0)
+  posthog-js:
+    specifier: ^1.126.0
+    version: 1.126.0
   prop-types:
     specifier: ^15.8.1
     version: 15.8.1
@@ -4746,6 +4749,10 @@ packages:
     dependencies:
       reusify: 1.0.4
 
+  /fflate@0.4.8:
+    resolution: {integrity: sha512-FJqqoDBR00Mdj9ppamLa/Y7vxm+PRmNWA67N846RvsoYVMKB4q3y/de5PA7gUmRMYK/8CMz2GDZQmCRN1wBcWA==}
+    dev: false
+
   /fflate@0.8.1:
     resolution: {integrity: sha512-/exOvEuc+/iaUm105QIiOt4LpBdMTWsXxqR0HDF35vx3fmaKzw7354gTilCh5rkzEt8WYyG//ku3h3nRmd7CHQ==}
     dev: false
@@ -6335,6 +6342,13 @@ packages:
       picocolors: 1.0.0
       source-map-js: 1.2.0
 
+  /posthog-js@1.126.0:
+    resolution: {integrity: sha512-8qCdPE9RZkyXI3kKCnkXWxK0jn2mLZg6g5a6KezDPqH7mHTG66v7ANU31hcwzQGV5F5UW1GXw0xL0PaC3HkA6g==}
+    dependencies:
+      fflate: 0.4.8
+      preact: 10.20.2
+    dev: false
+
   /posthtml-parser@0.10.2:
     resolution: {integrity: sha512-PId6zZ/2lyJi9LiKfe+i2xv57oEjJgWbsHGGANwos5AvdQp98i6AtamAl8gzSVFGfQ43Glb5D614cvZf012VKg==}
     engines: {node: '>=12'}
@@ -6362,6 +6376,10 @@ packages:
     dependencies:
       posthtml-parser: 0.11.0
       posthtml-render: 3.0.0
+    dev: false
+
+  /preact@10.20.2:
+    resolution: {integrity: sha512-S1d1ernz3KQ+Y2awUxKakpfOg2CEmJmwOP+6igPx6dgr6pgDvenqYviyokWso2rhHvGtTlWWnJDa7RaPbQerTg==}
     dev: false
 
   /prebuild-install@7.1.2:

@@ -1,4 +1,5 @@
-import { useMemo } from "react"
+import posthog from "posthog-js"
+import { useEffect, useMemo } from "react"
 
 import { useStorage } from "@plasmohq/storage/hook"
 
@@ -57,10 +58,15 @@ export function App() {
       url: isValidUrl ? currentUrl : vehicleCache?.url,
     }
 
-    // TODO: Save analytics
     setVehicleCache(data)
     return data
   }, [scrapedDataQuery.data, tax, ugxRate])
+
+  useEffect(() => {
+    if (isValidUrl && !!vehicleData?.heading) {
+      posthog.capture("vehicle search", vehicleData)
+    }
+  }, [vehicleData, isValidUrl])
 
   if (!isValidUrl && !vehicleCache?.heading) return <EmptyState />
 

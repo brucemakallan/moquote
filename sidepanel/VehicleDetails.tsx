@@ -55,7 +55,7 @@ export function VehicleDetails(props: Props) {
       className="max-w-[600px] mx-auto flex flex-col gap-4 h-screen justify-between bg-white"
     >
       <div className="flex flex-col gap-4">
-        <ImageSection src={imageUrl} isLoading={isLoading} />
+        <ImageSection src={imageUrl} isLoading={isLoading} vehicleUrl={url} />
 
         {!!isLoading ? (
           <div className="px-4">

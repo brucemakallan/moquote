@@ -1,4 +1,5 @@
 import { zodResolver } from "@hookform/resolvers/zod"
+import posthog from "posthog-js"
 import { useForm } from "react-hook-form"
 import { z } from "zod"
 
@@ -53,10 +54,13 @@ export function QuotationForm(props: Props) {
   })
 
   function onSubmit({ email }: z.infer<typeof FormSchema>) {
-    mutate({
+    const request = {
       ...quotationRequest,
       email,
-    })
+    }
+
+    posthog.capture("asked for quotation", request)
+    mutate(request)
   }
 
   return (
